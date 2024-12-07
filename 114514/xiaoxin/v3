@@ -1,0 +1,348 @@
+本地玩家=游戏：GetService(“玩家”)
+本地RunService=game:GetService("RunService")
+本地UserInputService=game:GetService("UserInputService")
+本地SoundService=game:GetService("SoundService")
+本地StarterGui=游戏：GetService("StarterGui")
+本地TextChatService=游戏：GetService("TextChatService")
+
+local LocalPlayer=players.LocalPlayer
+
+--音效
+本地函数playSound(soundId)
+本地声音=Instance.new("Sound")
+sound.SoundId="rbxassetid://"..oundId
+sound.Parent=SoundService
+声音：播放()
+sound.Ended:Connect(函数()
+声音：销毁()
+结束)
+结束
+
+--播放初始声音
+PlaySound("2865227271")
+
+--GUI创建
+本地ScreenGui=Instance.new("ScreenGui")
+ScreenGui.Name="SuperRingPartsGUI"
+ScreenGui.ResetOnSpawn=false
+ScreenGui.Parent=LocalPlayer:WaitForChild("PlayerGui")
+
+本地MainFrame=Instance.new("Frame")
+MainFrame.Size=UDim2.new(0，220，0，190)
+MainFrame.Position=UDim2.new(0.5，-110，0.5，-95)
+MainFrame.BackgroundColor3=Color3.FromRGB(205、170、125)-浅棕色
+MainFrame.BorderSizePixel=0
+MainFrame.Parent=ScreenGui
+
+--使GUI圆化
+本地UIC角=Instance.new(“UIC角”)
+UICorner.CornerRadius=UDim.new(0，0)
+UICorner.Parent=MainFrame
+
+本地标题=Instance.new("TextLabel")
+Title.Size=UDim2.new(1，0，0，40)
+标题位置=UDim2.new(0，0，0，0)
+Title.Text="小欣环绕v3"
+Title.TextColor3=Color3.FromRGB(101，67，33)--深棕色
+Title.BackgroundColor3=Color3.fromRGB(222，184，135)-浅棕色
+Title.Font=枚举。Font.Fondamento--更优雅的字体
+Title.TextSize=22
+Title.Parent=MainFrame
+
+--将标题四舍五入
+本地TitleCorner=Instance.new("UICorner")
+TitleCorner.CornerRadius=UDim.new(0，0)
+TitleCorner.Parent=Title
+
+本地togglebutton=Instance.new("TextButton")
+ToggleButton.Size=UDim2.new(0.8，0，0，35)
+ToggleButton.Position=UDim2.new(0.1，0，0.3，0)
+ToggleButton.Text="关闭黑洞"
+ToggleButton.BackgroundColor3=Color3.FromRGB(160，82，45)--Sienna
+ToggleButton.TextColor3=Color3.fromRGB(255，248，220)--Cornsilk
+ToggleButton.Font=枚举.Font.Fondamento
+ToggleButton.TextSize=18
+ToggleButton.Parent=MainFrame
+
+--旋转切换按钮
+本地切换角=Instance.new(“UIC角”)
+ToggleCorner.CornerRadius=UDim.new(0，10)
+ToggleCorner.Parent=togglebutton
+
+local DecreaseRadius=Instance.new("TextButton")
+DecreaseRadius.Size=UDim2.new(0.2，0，0，35)
+减小半径.位置=UDim2.new(0.1，0，0.6，0)
+DecreaseRadius.Text="减"
+减小半径。背景颜色3=颜色3.来自RGB(139，69，19)-鞍棕色
+DecreaseRadius.TextColor3=Color3.fromRGB(255，248，220)--Cornsilk
+减小半径.字体=枚举.字体.Fondamento
+DecreaseRadius.TextSize=18
+DecreaseRadius.Parent=MainFrame
+
+--圆形减小按钮
+本地DecreaseCorner=Instance.new("UICorner")
+DecreaseCorner.CornerRadius=UDim.new(0，10)
+DecreaseCorner.Parent=DecreaseRadius
+
+本地IncreaseRadius=Instance.new("TextButton")
+IncreaseRadius.Size=UDim2.new(0.2，0，0，35)
+IncreaseRadius.Position=UDim2.new(0.7，0，0.6，0)
+IncreaseRadius.Text="加"
+IncreaseRadius.BackgroundColor3=Color3.FromRGB(139，69，19)-鞍棕色
+IncreaseRadius.TextColor3=Color3.FromRGB(255，248，220)--玉米丝
+IncreaseRadius.Font=枚举.Font.Fondamento
+IncreaseRadius.TextSize=18
+IncreaseRadius.Parent=MainFrame
+
+--圆形增加按钮
+本地IncreaseCorner=Instance.new("UICorner")
+IncreaseCorner.CornerRadius=UDim.new(0，10)
+IncreaseCorner.Parent=IncreaseRadius
+
+本地半径显示=Instance.new("TextLabel")
+RadiusDisplay.Size=UDim2.new(0.4，0，0，35)
+RadiusDisplay.Position=UDim2.new(0.3，0，0.6，0)
+RadiusDisplay.Text="半径：50"
+RadiusDisplay.BackgroundColor3=Color3.FromRGB(210、180、140)--Tan
+RadiusDisplay.TextColor3=Color3.FromRGB(101、67、33)--深棕色
+RadiusDisplay.Font=枚举.Font.Fondamento
+RadiusDisplay.TextSize=18
+RadiusDisplay.Parent=MainFrame
+
+--圆角半径显示
+本地RadiusCorner=Instance.new("UICorner")
+RadiusCorner.CornerRadius=UDim.new(0，10)
+RadiusCorner.Parent=RadiusDisplay
+
+local Watermark = Instance.new("TextLabel")
+Watermark.Size = UDim2.new(1, 0, 0, 20)
+Watermark.Position = UDim2.new(0, 0, 1, -20)
+Watermark.Text = "环绕 [V3] - 原作者 yumm"
+Watermark.TextColor3 = Color3.fromRGB(101, 67, 33) -- Dark brown
+Watermark.BackgroundTransparency = 1
+Watermark.Font = Enum.Font.Fondamento
+Watermark.TextSize = 14
+Watermark.Parent = MainFrame
+
+-- Add minimize button
+local MinimizeButton = Instance.new("TextButton")
+MinimizeButton.Size = UDim2.new(0, 30, 0, 30)
+MinimizeButton.Position = UDim2.new(1, -35, 0, 5)
+MinimizeButton.Text = "-"
+MinimizeButton.BackgroundColor3 = Color3.fromRGB(139, 69, 19) -- Saddle brown
+MinimizeButton.TextColor3 = Color3.fromRGB(255, 248, 220) -- Cornsilk
+MinimizeButton.Font = Enum.Font.Fondamento
+MinimizeButton.TextSize = 18
+MinimizeButton.Parent = MainFrame
+
+-- Round the minimize button
+local MinimizeCorner = Instance.new("UICorner")
+MinimizeCorner.CornerRadius = UDim.new(0, 15)
+MinimizeCorner.Parent = MinimizeButton
+
+-- Minimize functionality
+local minimized = false
+MinimizeButton.MouseButton1Click:Connect(function()
+    minimized = not minimized
+    if minimized then
+        MainFrame:TweenSize(UDim2.new(0, 220, 0, 40), "Out", "Quad", 0.3, true)
+        MinimizeButton.Text = "开"
+        ToggleButton.Visible = false
+        DecreaseRadius.Visible = false
+        IncreaseRadius.Visible = false
+        RadiusDisplay.Visible = false
+        Watermark.Visible = false
+    else
+        MainFrame:TweenSize(UDim2.new(0, 220, 0, 190), "Out", "Quad", 0.3, true)
+        MinimizeButton.Text = "关"
+        ToggleButton.Visible = true
+        DecreaseRadius.Visible = true
+        IncreaseRadius.Visible = true
+        RadiusDisplay.Visible = true
+        Watermark.Visible = true
+    end
+    playSound("12221967")
+end)
+
+-- Make GUI draggable
+local dragging
+local dragInput
+local dragStart
+local startPos
+
+local function update(input)
+    local delta = input.Position - dragStart
+    MainFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+end
+
+MainFrame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        startPos = MainFrame.Position
+        
+        input.Changed:Connect(function()            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+MainFrame.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+        dragInput = input
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        update(input)
+    end
+end)
+
+-- Ring Parts Logic
+if not getgenv().Network then
+    getgenv().Network = {
+        BaseParts = {},
+        Velocity = Vector3.new(14.46262424, 14.46262424, 14.46262424)
+    }
+    Network.RetainPart = function(Part)
+        if typeof(Part) == "Instance" and Part:IsA("BasePart") and Part:IsDescendantOf(workspace) then
+            table.insert(Network.BaseParts, Part)
+            Part.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0, 0, 0)
+            Part.CanCollide = false
+        end
+    end
+    local function EnablePartControl()
+        LocalPlayer.ReplicationFocus = workspace
+        RunService.Heartbeat:Connect(function()
+            sethiddenproperty(LocalPlayer, "SimulationRadius", math.huge)
+            for _, Part in pairs(Network.BaseParts) do
+                if Part:IsDescendantOf(workspace) then
+                    Part.Velocity = Network.Velocity
+                end
+            end
+        end)
+    end
+    EnablePartControl()
+end
+
+local radius = 50
+local height = 100
+local rotationSpeed = 10
+local attractionStrength = 1000
+local ringPartsEnabled = false
+
+local function RetainPart(Part)
+    if Part:IsA("BasePart") and not Part.Anchored and Part:IsDescendantOf(workspace) then
+        if Part.Parent == LocalPlayer.Character or Part:IsDescendantOf(LocalPlayer.Character) then
+            return false
+        end
+
+        Part.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0, 0, 0)
+        Part.CanCollide = false
+        return true
+    end
+    return false
+end
+
+local parts = {}
+local function addPart(part)
+    if RetainPart(part) then
+        if not table.find(parts, part) then
+            table.insert(parts, part)
+        end
+    end
+end
+
+local function removePart(part)
+    local index = table.find(parts, part)
+    if index then
+        table.remove(parts, index)
+    end
+end
+
+for _, part in pairs(workspace:GetDescendants()) do
+    addPart(part)
+end
+
+workspace.DescendantAdded:Connect(addPart)
+workspace.DescendantRemoving:Connect(removePart)
+
+RunService.Heartbeat:Connect(function()
+    if not ringPartsEnabled then return end
+    
+    local humanoidRootPart = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+    if humanoidRootPart then
+        local tornadoCenter = humanoidRootPart.Position
+        for _, part in pairs(parts) do
+            if part.Parent and not part.Anchored then
+                local pos = part.Position
+                local distance = (Vector3.new(pos.X, tornadoCenter.Y, pos.Z) - tornadoCenter).Magnitude
+                local angle = math.atan2(pos.Z - tornadoCenter.Z, pos.X - tornadoCenter.X)
+                local newAngle = angle + math.rad(rotationSpeed)
+                local targetPos = Vector3.new(
+                    tornadoCenter.X + math.cos(newAngle) * math.min(radius, distance),
+                    tornadoCenter.Y + (height * (math.abs(math.sin((pos.Y - tornadoCenter.Y) / height)))),
+                    tornadoCenter.Z + math.sin(newAngle) * math.min(radius, distance)
+                )
+                local directionToTarget = (targetPos - part.Position).unit
+                part.Velocity = directionToTarget * attractionStrength
+            end
+        end
+    end
+end)
+
+-- Button functionality
+ToggleButton.MouseButton1Click:Connect(function()
+    ringPartsEnabled = not ringPartsEnabled
+    ToggleButton.Text = ringPartsEnabled and "环绕开" or "环绕关"
+    ToggleButton.BackgroundColor3 = ringPartsEnabled and Color3.fromRGB(50, 205, 50) or Color3.fromRGB(160, 82, 45)
+    playSound("12221967")
+end)
+
+DecreaseRadius.MouseButton1Click:Connect(function()
+    radius = math.max(10, radius - 5)
+    RadiusDisplay.Text = "Radius: " .. radius
+    playSound("12221967")
+end)
+
+IncreaseRadius.MouseButton1Click:Connect(function()
+    radius = math.min(100, radius + 5)
+    RadiusDisplay.Text = "Radius: " .. radius
+    playSound("12221967")
+end)
+
+-- Notifications
+StarterGui:SetCore("SendNotification", {
+    Title = "Join me Discord !",
+    Text = "For More Op Scripts !",
+    Duration = 5
+})
+
+-- Get player thumbnail
+local userId = Players:GetUserIdFromNameAsync("NannaDev")
+local thumbType = Enum.ThumbnailType.HeadShot
+local thumbSize = Enum.ThumbnailSize.Size420x420
+local content, isReady = Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
+
+StarterGui:SetCore("SendNotification", {
+    Title = "Enjoy Super Ring [V3]",
+    Text = "Cracked By .gg/3kZ7dKbJPe",
+    Icon = content,
+    Duration = 5
+})
+
+-- Chat message (Updated for new chat system)
+local function SendChatMessage(message)
+    if TextChatService.ChatVersion == Enum.ChatVersion.TextChatService then
+        local textChannel = TextChatService.TextChannels.RBXGeneral
+        textChannel:SendAsync(message)
+    else
+        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(message, "All")
+    end
+end
+
+-- Send the chat message
+SendChatMessage("环绕V3重置版")
+SendChatMessage("由 yumm 制作的环绕V3")"
